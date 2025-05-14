@@ -16,3 +16,31 @@ This project teaches you how to use a real-world API (Tiingo) to:
 3. Use the API token provided for you in MS TEAMS
 4. Replace `"your_tiingo_api_token"` in `tiingo_stock_plot.py` with your actual token.
 5. Run the script: `python tiingo_stock_plot.py`
+
+Stock Volatility Tracker Tool
+
+Purpose
+The Stock Volatility tracker, is a finance tool that states when the market has significant price fluctuations (volatility), either up or down and is an important part in risk assessment when investing in a stock. This tool uses data from the Tiingo API to show periods of unusual price movements through graphs, tables and text.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Contributors
+David Ibrahim, Jonathan McNaught, Ethan Gunadi
