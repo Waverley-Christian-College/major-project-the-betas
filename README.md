@@ -17,25 +17,37 @@ This project teaches you how to use a real-world API (Tiingo) to:
 4. Replace `"your_tiingo_api_token"` in `tiingo_stock_plot.py` with your actual token.
 5. Run the script: `python tiingo_stock_plot.py`
 
-Stock Volatilty Tracker
-
-Purpose
-The Stock Volatility tracker, is a finance tool that states when the market has significant price fluctuations (volatility), either up or down and is an important part in risk assessment when investing in a stock. This tool uses data from the Tingo API to show periods of unusual price movements through graphs, tables and text.
+# 📈 Stock Volatility Tracker
 
 
+## 🎯 Purpose
 
-Features
-
-Volatility Visualization
-This shows interactive charts displaying historical volatility, which allow the people to see the hsitorical fluctuations, these visulisations help people to idetify periods of high and low volatility. Which can help a person decide to buy the company
-
-Volitility Predicting 
-Some trackers employ statistical models such as GARCH, which is a machine that uses algorithm to predict future volitility trends, which makes it easier to invest in a company.
-
-Customizable Timeframes
-This allows users to select a timeframe eg. 1 month, 3 months or 1 year. Which supports the person with trend analysis and helping the person when making a choice.
+The **Stock Volatility Tracker** is a finance tool that identifies when the market experiences significant price fluctuations (volatility), either up or down. This is an important component in risk assessment when investing in stocks. Our tool leverages data from the Tiingo API to visualize periods of unusual price movements through intuitive graphs, tables, and actionable insights.
 
 
+## ✨ Features
 
-Contributors
-David Ibrahim, Jonathan McNaught, Ethan Gunadi
+### 📊 Volatility Visualization
+Interactive charts displaying historical volatility allow users to see historical fluctuations at a glance. These visualizations help investors identify periods of high and low volatility, providing crucial context for making informed purchase decisions.
+
+### 🔮 Volatility Prediction
+Our tracker employs statistical models such as GARCH (Generalized Autoregressive Conditional Heteroskedasticity), a sophisticated algorithm that helps predict future volatility trends, making it easier to develop investment strategies with confidence.
+
+### ⏱️ Customizable Timeframes
+Users can select specific timeframes (e.g., 1 month, 3 months, or 1 year) for analysis. This flexibility supports comprehensive trend analysis and empowers investors when making crucial financial decisions.
+
+## 📋 How It Works
+
+1. **Data Retrieval**: Connect to Tiingo API to fetch historical stock price data
+2. **Analytics Processing**: Calculate volatility metrics across different time periods
+3. **Pattern Recognition**: Identify periods of unusually high or low volatility
+4. **Visualization**: Generate interactive charts and tables for intuitive understanding
+
+
+## 👨‍💻 Contributors
+
+- **David Ibrahim** - *Visualization & User Interface*
+- **Jonathan McNaught** - *Data Retrieval & Core Metrics*
+- **Ethan Gunadi** - *Analysis & Advanced Metrics*
+
+*Made with ❤️ for Year 9 Computer Science Project*
