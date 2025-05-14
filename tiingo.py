@@ -3,13 +3,14 @@ import json
 from datetime import datetime
 import matplotlib.pyplot as plt
 import os
+import os
 
 # Your Tiingo API token
 API_TOKEN = os.getenv("API_TOKEN")
-print(f" This is my API Token {API_TOKEN}")
+print(f"This is my {API_TOKEN}")
 
 
-# Parameters
+# Parameter
 symbol = "NVDA"
 start_date = "2025-01-01"
 end_date = "2025-04-01"
