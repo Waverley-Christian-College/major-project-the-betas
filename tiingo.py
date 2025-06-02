@@ -3,19 +3,21 @@ import json
 from datetime import datetime
 import matplotlib.pyplot as plt
 import os
-import os
+
 
 # Your Tiingo API token
 API_TOKEN = os.getenv("API_TOKEN")
-print(f"This is my {API_TOKEN}")
 
 
 # Parameter
-symbol = "NVDA"
-start_date = "2025-01-01"
-end_date = "2025-04-01"
+symbol_1 = input("what's your first company you choose? ").strip().upper()
+symbol_2 = input("what's your second comapany you choose? ").strip().upper()
+start_date = "2025-05-01"
+end_date = "2025-05-28"
 
-url = f"https://api.tiingo.com/tiingo/daily/{symbol}/prices"
+url_1 = f"https://api.tiingo.com/tiingo/daily/{symbol_1}/prices"
+url_2 = f"https://api.tiingo.com/tiingo/daily/{symbol_2}/prices"
+
 headers = {
     "Content-Type": "application/json",
     "Authorization": f"Token {API_TOKEN}"
@@ -29,6 +31,8 @@ params = {
 # Make the request
 response = requests.get(url, headers=headers, params=params)
 data = response.json()
+
+
 
 # Extract dates and closing prices
 dates = [entry["date"][:10] for entry in data]
@@ -45,4 +49,5 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 plt.tight_layout()
-plt.savefig("stock_chart_tiingo.png")
+plt.savefig("Jonathan_Test.png")
+
