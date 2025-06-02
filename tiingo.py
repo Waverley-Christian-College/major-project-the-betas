@@ -6,14 +6,15 @@ import os
 import os
 
 # Your Tiingo API token
-API_TOKEN = os.getenv("API_TOKEN")
+#API_TOKEN = os.getenv("API_TOKEN")
+API_TOKEN = "d0r5o7hr01qn4tjgl0hgd0r5o7hr01qn4tjgl0i0"
 print(f"This is my {API_TOKEN}")
 
 
 # Parameter
-symbol = "NVDA"
-start_date = "2025-01-01"
-end_date = "2025-04-01"
+symbol = "360"
+start_date = "2025-04-01"
+end_date = "2025-05-01"
 
 url = f"https://api.tiingo.com/tiingo/daily/{symbol}/prices"
 headers = {
@@ -45,4 +46,4 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 plt.tight_layout()
-plt.savefig("stock_chart_tiingo.png")
+plt.savefig("david_test2.png")
