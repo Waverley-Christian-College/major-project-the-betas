@@ -1,6 +1,6 @@
 import requests
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import os
 
@@ -12,8 +12,16 @@ API_TOKEN = os.getenv("API_TOKEN")
 # Parameter
 symbol_1 = input("what's your first company you choose? ").strip().upper() 
 symbol_2 = input("what's your second comapany you choose? ").strip().upper()
-start_date = "2025-05-01"
-end_date = "2025-05-28"
+
+# Time Periods
+print("\nChoose your time period:")
+print("1. Last 1 month")
+print("2. Last 3 months") 
+print("3. Last 6 months")
+print("4. Last 1 year")
+print("5. Custom dates")
+
+timechoice = input("Enter your time period selection (1-5): ")
 
 url_1 = f"https://api.tiingo.com/tiingo/daily/{symbol_1}/prices"
 url_2 = f"https://api.tiingo.com/tiingo/daily/{symbol_2}/prices"
