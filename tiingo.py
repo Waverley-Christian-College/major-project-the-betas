@@ -1,44 +1,47 @@
 import requests
-import json
-from datetime import datetime
 import matplotlib.pyplot as plt
-import os
-import os
 
-# Your Tiingo API token
-#API_TOKEN = os.getenv("API_TOKEN")
-API_TOKEN = "d0r5o7hr01qn4tjgl0hgd0r5o7hr01qn4tjgl0i0"
-print(f"This is my {API_TOKEN}")
+API_TOKEN = "5296eb9cb95697ef016ac7de004f18c24ecfad7c"
 
-
-# Parameter
 symbol_1 = "NVDA"
 symbol_2 = "AAPL"
+# Changed to past dates for available data
 start_date = "2025-04-01"
 end_date = "2025-05-01"
 
-url = f"https://api.tiingo.com/tiingo/daily/{symbol_1}/prices"
-headers = {
-    "Content-Type": "application/json",
-    "Authorization": f"Token {API_TOKEN}"
-}
-params = {
-    "startDate": start_date,
-    "endDate": end_date,
-    "resampleFreq": "daily"
-}
+def fetch_stock_data(symbol):
+    url = f"https://api.tiingo.com/tiingo/daily/{symbol}/prices"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Token {API_TOKEN}"
+    }
+    params = {
+        "startDate": start_date,
+        "endDate": end_date,
+        "resampleFreq": "daily"
+    }
 
-# Make the request
-response = requests.get(url, headers=headers, params=params)
-data = response.json()
+    response = requests.get(url, headers=headers, params=params)
 
-# Extract dates and closing prices
-dates = [entry["date"][:10] for entry in data]
-closes = [entry["close"] for entry in data]
+    if response.status_code != 200:
+        print(f"Error fetching data for {symbol}: {response.status_code}")
+        print(response.text)
+        return [], []  # Return empty lists on error
 
-# Plotting
+    data = response.json()
+
+    dates = [entry["date"][:10] for entry in data]
+    closes = [entry["close"] for entry in data]
+
+    return dates, closes
+
+# Fetch data for both symbols
+dates_1, closes_1 = fetch_stock_data(symbol_1)
+dates_2, closes_2 = fetch_stock_data(symbol_2)
+
+# Plot data for symbol 1
 plt.figure(figsize=(20, 5))
-plt.plot(dates, closes, marker='o')
+plt.plot(dates_1, closes_1, marker='o')
 plt.title(f"{symbol_1} Closing Prices")
 plt.xlabel("Date")
 plt.ylabel("Close Price (USD)")
@@ -46,16 +49,15 @@ plt.xticks(rotation=45)
 plt.grid(True)
 plt.tight_layout()
 plt.show()
-plt.tight_layout()
 
+# Plot data for symbol 2
 plt.figure(figsize=(20, 5))
-plt.plot(dates, closes, marker='o')
+plt.plot(dates_2, closes_2, marker='o')
 plt.title(f"{symbol_2} Closing Prices")
 plt.xlabel("Date")
 plt.ylabel("Close Price (USD)")
 plt.xticks(rotation=45)
 plt.grid(True)
 plt.tight_layout()
+plt.savefig("david_test2.png")  # Save the plot image
 plt.show()
-plt.tight_layout()
-plt.savefig("david_test2.png")
