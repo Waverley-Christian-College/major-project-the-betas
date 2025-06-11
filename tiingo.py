@@ -29,11 +29,17 @@ params = {
 }
 
 # Make the request
+print(f"Fetching data for {symbol_1}...") #Status message
 response_1 = requests.get(url_1, headers=headers, params=params)
 data_1 = response_1.json()
 
+print(f"Fetching data for {symbol_2}...")
 response_2 = requests.get(url_2, headers=headers, params=params)
-data_1 = response_2.json()
+data_2 = response_2.json()
+
+if not data_1 or not data_2: #error message
+    print("Error: Could not retrieve data for one or both stocks.")
+    exit()
 
 
 # Extract dates and closing prices
@@ -45,7 +51,7 @@ closes_2 = [entry["close"] for entry in data_1]
 
 # Plotting
 plt.figure(figsize=(20, 5))
-plt.plot(dates, closes, marker='o')
+plt.plot(dates_1, closes_1, marker='o')
 plt.title(f"{symbol_1} Closing Prices")
 plt.xlabel("Date")
 plt.ylabel("Close Price (USD)")
