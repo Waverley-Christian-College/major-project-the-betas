@@ -23,27 +23,53 @@ print("5. Custom dates")
 
 timechoice = input("Enter your time period selection (1-5): ")
 
+today = datetime.now() #got lazy of writing that thing a lot
+dateformat = "%Y-%m-%d"
+
 #Time Choices (basically does some time math)
 if timechoice == "1":
-    end_date = datetime.now().strftime("%Y-%m-%d")
-    start_date = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
-
+    if today.month == 1:
+        start_date = today.replace(year = today.year - 1, month = 12).strftime(dateformat)
+    else:
+        start_date = today.replace(month = today.month - 1).strftime(dateformat)
+    
+    end_date = today.strftime(dateformat)
+    
 elif timechoice == "2":
-    end_date = datetime.now().strftime("%Y-%m-%d")
-    start_date = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
+    new_month = today.month - 3
+    new_year = today.year
+    
+    if new_month <= 0:  # Handle year crossing
+        new_month += 12
+        new_year -= 1
+    start_date = today.replace(year=new_year, month=new_month).strftime(dateformat)
+      
+    end_date = today.strftime(dateformat)
 
 elif timechoice == "3":
-    end_date = datetime.now().strftime("%Y-%m-%d")
-    start_date = (datetime.now() - timedelta(days=180)).strftime("%Y-%m-%d")
+    new_month = today.month - 6
+    new_year = today.year
+    
+    if new_month <= 0: 
+        new_month += 12
+        new_year -= 1
+    start_date = today.replace(year=new_year, month=new_month).strftime(dateformat)
+      
+    end_date = today.strftime(dateformat)
 
 elif timechoice == "4":
-    end_date = datetime.now().strftime("%Y-%m-%d")
-    start_date = (datetime.now() - timedelta(days=365)).strftime("%Y-%m-%d")
+    start_date = today.replace(year = today.year - 1).strftime(dateformat)
+
+    end_date = today.strftime(dateformat)
 
 elif timechoice == "5":
-    end_date = input("Enter start date (YYYY-MM-DD): ")
-    start_date = input("Enter end date (YYYY-MM-DD): ")
+    custom_start = input("Enter start date (YYYY-MM-DD): ")
+    custom_end = input("Enter end date (YYYY-MM-DD): ")
 
+    start_date = custom_start.strftime(dateformat) 
+    end_date = custom_end.strftime(dateformat)
+
+print(f"Comparing stocks from {start_date} to {end_date}")
 
 url_1 = f"https://api.tiingo.com/tiingo/daily/{symbol_1}/prices"
 url_2 = f"https://api.tiingo.com/tiingo/daily/{symbol_2}/prices"
@@ -76,8 +102,8 @@ if not data_1 or not data_2: #error message
 dates_1 = [entry["date"][:10] for entry in data_1]
 closes_1 = [entry["close"] for entry in data_1]
 
-dates_2 = [entry["date"][:10] for entry in data_1]
-closes_2 = [entry["close"] for entry in data_1]
+dates_2 = [entry["date"][:10] for entry in data_2]
+closes_2 = [entry["close"] for entry in data_2]
 
 # Plotting
 plt.figure(figsize=(20, 5))
@@ -90,4 +116,3 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 plt.tight_layout()
-plt.savefig("Jonathan_Test.png")
