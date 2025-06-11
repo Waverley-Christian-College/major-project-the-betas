@@ -10,7 +10,7 @@ API_TOKEN = os.getenv("API_TOKEN")
 
 
 # Parameter
-symbol_1 = input("what's your first company you choose? ").strip().upper()
+symbol_1 = input("what's your first company you choose? ").strip().upper() 
 symbol_2 = input("what's your second comapany you choose? ").strip().upper()
 start_date = "2025-05-01"
 end_date = "2025-05-28"
@@ -29,14 +29,19 @@ params = {
 }
 
 # Make the request
-response = requests.get(url_1, headers=headers, params=params)
-data = response.json()
+response_1 = requests.get(url_1, headers=headers, params=params)
+data_1 = response_1.json()
 
+response_2 = requests.get(url_2, headers=headers, params=params)
+data_1 = response_2.json()
 
 
 # Extract dates and closing prices
-dates = [entry["date"][:10] for entry in data]
-closes = [entry["close"] for entry in data]
+dates_1 = [entry["date"][:10] for entry in data_1]
+closes_1 = [entry["close"] for entry in data_1]
+
+dates_2 = [entry["date"][:10] for entry in data_1]
+closes_2 = [entry["close"] for entry in data_1]
 
 # Plotting
 plt.figure(figsize=(20, 5))
