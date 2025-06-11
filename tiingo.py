@@ -23,6 +23,28 @@ print("5. Custom dates")
 
 timechoice = input("Enter your time period selection (1-5): ")
 
+#Time Choices (basically does some time math)
+if timechoice == "1":
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    start_date = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+
+elif timechoice == "2":
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    start_date = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
+
+elif timechoice == "3":
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    start_date = (datetime.now() - timedelta(days=180)).strftime("%Y-%m-%d")
+
+elif timechoice == "4":
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    start_date = (datetime.now() - timedelta(days=365)).strftime("%Y-%m-%d")
+
+elif timechoice == "5":
+    end_date = input("Enter start date (YYYY-MM-DD): ")
+    start_date = input("Enter end date (YYYY-MM-DD): ")
+
+
 url_1 = f"https://api.tiingo.com/tiingo/daily/{symbol_1}/prices"
 url_2 = f"https://api.tiingo.com/tiingo/daily/{symbol_2}/prices"
 
