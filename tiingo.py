@@ -21,7 +21,7 @@ print("3. Last 6 months")
 print("4. Last 1 year")
 print("5. Custom dates")
 
-timechoice = input("Enter your time period selection (1-5): ")
+timechoice = input("Enter your time period selection (1-5): ").strip()
 
 today = datetime.now() #got lazy of writing that thing a lot
 dateformat = "%Y-%m-%d"
@@ -68,6 +68,15 @@ elif timechoice == "5":
 
     start_date = custom_start.strftime(dateformat) 
     end_date = custom_end.strftime(dateformat)
+
+else:
+    print("Invalid time choice. Using 1 month as a default.")
+    if today.month == 1:
+        start_date = today.replace(year = today.year - 1, month = 12).strftime(dateformat)
+    else:
+        start_date = today.replace(month = today.month - 1).strftime(dateformat)
+
+        end_date = today.strftime(dateformat)
 
 print(f"Comparing stocks from {start_date} to {end_date}")
 
