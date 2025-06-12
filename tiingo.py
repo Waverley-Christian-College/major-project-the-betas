@@ -10,8 +10,8 @@ API_TOKEN = os.getenv("API_TOKEN")
 
 
 # Parameter
-symbol_1 = input("what's your first company you choose? ").strip().upper() 
-symbol_2 = input("what's your second comapany you choose? ").strip().upper()
+symbol_1 = input("What's your first company you choose? ").strip().upper() 
+symbol_2 = input("What's your second comapany you choose? ").strip().upper()
 
 # Time Periods
 print("\nChoose your time period:")
@@ -61,13 +61,22 @@ elif timechoice == "4":
     start_date = today.replace(year = today.year - 1).strftime(dateformat)
 
     end_date = today.strftime(dateformat)
-
+#error message:
 elif timechoice == "5":
-    custom_start = input("Enter start date (YYYY-MM-DD): ")
-    custom_end = input("Enter end date (YYYY-MM-DD): ")
+    start_date = input("Enter start date (YYYY-MM-DD): ")
+    end_date = input("Enter end date (YYYY-MM-DD): ")
 
-    start_date = custom_start.strftime(dateformat) 
-    end_date = custom_end.strftime(dateformat)
+    try:
+        startdt = datetime.strptime(start_date, "%Y-%m-%d")
+        enddt = datetime.strptime(end_date, "%Y-%m-%d")\
+        
+        if startdt >= enddt:
+            print("Error: Start date must be before end date.")
+            exit()
+
+    except ValueError: 
+        print("Error: Invalid date format. Please use YYYY-MM-DD.")
+        exit()
 
 else:
     print("Invalid time choice. Using 1 month as a default.")
@@ -102,8 +111,9 @@ print(f"Fetching data for {symbol_2}...")
 response_2 = requests.get(url_2, headers=headers, params=params)
 data_2 = response_2.json()
 
-if not data_1 or not data_2: #error message
-    print("Error: Could not retrieve data for one or both stocks.")
+#Error message
+if ("detail" in str(data_1)) or ("detail" in str(data_2)): 
+    print("Error: Could not retrieve data for one or both stocks or Invalid stock Symbol")
     exit()
 
 
