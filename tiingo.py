@@ -42,7 +42,7 @@ dates_2, closes_2 = fetch_stock_data(symbol_2)
 # Plot data for symbol 1
 plt.figure(figsize=(20, 5))
 plt.plot(dates_1, closes_1, marker='o')
-plt.title(f"{symbol_1} Closing Prices")
+plt.title(f"{symbol_1} & {symbol_2} Closing Prices")
 plt.xlabel("Date")
 plt.ylabel("Close Price (USD)")
 plt.xticks(rotation=45)
@@ -51,13 +51,6 @@ plt.tight_layout()
 plt.show()
 
 # Plot data for symbol 2
-plt.figure(figsize=(20, 5))
 plt.plot(dates_2, closes_2, marker='o')
-plt.title(f"{symbol_2} Closing Prices")
-plt.xlabel("Date")
-plt.ylabel("Close Price (USD)")
-plt.xticks(rotation=45)
-plt.grid(True)
-plt.tight_layout()
-plt.savefig("david_test2.png")  # Save the plot image
-plt.show()
+plt.savefig("david_test3.png")  # Save the plot image
+
