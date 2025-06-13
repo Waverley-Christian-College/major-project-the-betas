@@ -34,7 +34,7 @@ Users can select custom timeframes (1 month, 3 months, 6 months, 1 year or custo
 **Step 1: Get the code**
 ```bash
 # Download the project from GitHub
-git clone https://github.com/Waverley-Christian-College/major-project-the-betas/blob/main/tiingo.py
+git clone https://github.com/Waverley-Christian-College/major-project-the-betas
 ```
 
 **Step 2: Open the project**
