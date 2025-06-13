@@ -68,7 +68,7 @@ elif timechoice == "5":
 
     try:
         startdt = datetime.strptime(start_date, "%Y-%m-%d")
-        enddt = datetime.strptime(end_date, "%Y-%m-%d")\
+        enddt = datetime.strptime(end_date, "%Y-%m-%d")
         
         if startdt >= enddt:
             print("Error: Start date must be before end date.")
@@ -116,13 +116,42 @@ if ("detail" in str(data_1)) or ("detail" in str(data_2)):
     print("Error: Could not retrieve data for one or both stocks or Invalid stock Symbol")
     exit()
 
-
 # Extract dates and closing prices
 dates_1 = [entry["date"][:10] for entry in data_1]
 closes_1 = [entry["close"] for entry in data_1]
 
 dates_2 = [entry["date"][:10] for entry in data_2]
 closes_2 = [entry["close"] for entry in data_2]
+
+start_price_1 = closes_1[0]
+end_price_1 = closes_1[-1]
+
+start_price_2 = closes_1[0]
+end_price_2 = closes_1[-1]
+
+change_1 = ((end_price_1 - start_price_1) / start_price_1) * 100
+change_2 = ((end_price_2 - start_price_2) / start_price_2) * 100
+
+print(f"{symbol_1}:")
+print(f"  Start Price: ${start_price_1:.2f}")
+print(f"  End Price:   ${end_price_1:.2f}")
+print(f"  Change:      {change_1:+.2f}%")
+
+print(f"\n{symbol_2}:")
+print(f"  Start Price: ${start_price_2:.2f}")
+print(f"  End Price:   ${end_price_2:.2f}")
+print(f"  Change:      {change_2:+.2f}%")
+
+if closes_1[-1] > closes_2[-1]:
+    print(f"🟢 {symbol_1} ended higher than {symbol_2}")
+
+elif closes_2[-1] > closes_1[-1]:
+    print(f"🟢 {symbol_2} ended higher than {symbol_1}")
+
+else:
+    print("📊 Both stocks ended at the same price")
+
+print("Please refer to the graph to compare the 2 stocks!")
 
 # Plotting
 plt.figure(figsize=(20, 5))
