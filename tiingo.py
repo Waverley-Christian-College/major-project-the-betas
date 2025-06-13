@@ -224,19 +224,22 @@ print("=" * 60)
 print("✨ Analysis complete! Thank you for using the Stock Comparison Tool!")
 print("=" * 60)
 
-# ===== CREATE GRAPH VISUALIZATION =====
-# Use matplotlib to create a line graph showing stock price over time
-plt.figure(figsize=(20, 5))  # Create a figure with width=20, height=5 inches
+# Fetch data
+dates_1, closes_1 = fetch_stock_data(symbol_1)
+dates_2, closes_2 = fetch_stock_data(symbol_2)
 
-# Plot the first stock's data
-plt.plot(dates_1, closes_1, marker='o')  # dates_1 = x-axis, closes_1 = y-axis, 'o' adds circle markers
+# Plotting
+plt.figure(figsize=(20, 5))
+plt.plot(dates_1, closes_1, marker='o', label=symbol_1)
+plt.plot(dates_2, closes_2, marker='o', label=symbol_2)
 
-# Add labels and title to make the graph informative
-plt.title(f"{symbol_1} Closing Prices")  # Title at the top of the graph
-plt.xlabel("Date")                        # Label for x-axis
-plt.ylabel("Close Price (USD)")           # Label for y-axis
-plt.xticks(rotation=45)                   # Rotate date labels 45 degrees so they don't overlap
-plt.grid(True)                            # Add grid lines to make it easier to read values
-plt.tight_layout()                        # Automatically adjust spacing to prevent overlapping
-plt.show()                                # Display the graph in a window
-plt.tight_layout()                        # Called again to ensure proper layout (redundant but harmless)
+plt.title(f"{symbol_1} & {symbol_2} Closing Prices")
+plt.xlabel("Date")
+plt.ylabel("Close Price (USD)")
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.legend()  # legend
+
+plt.savefig(f"{symbol_1} VS {symbol_2}.png")  # Save the plot
+plt.show()
