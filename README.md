@@ -8,8 +8,11 @@ The **Stock Comparison Tool** is a finance application that allows investors to 
 ### 📈 Side-by-Side Visualization
 Interactive dual-line charts that display two stocks simultaneously, making it easy to compare price movements, trends, and performance patterns at a glance. Each stock is represented by a distinct colored line for clear differentiation.
 
+### 🔍 Brief Analysis of Stocks
+Starting and Closing prices of the user selected stocks are displayed alongside the percentage change.
+
 ### ⏱️ Flexible Time Periods
-Users can select custom timeframes (e.g., 1 month, 3 months, 6 months, or 1 year) for comparison analysis. This flexibility enables both short-term trading insights and long-term investment strategy development.
+Users can select custom timeframes (1 month, 3 months, 6 months, 1 year or custom) for comparison analysis. This flexibility enables both short-term trading insights and long-term investment strategy development.
 
 
 ## 📋 How It Works
@@ -31,7 +34,7 @@ Users can select custom timeframes (e.g., 1 month, 3 months, 6 months, or 1 year
 **Step 1: Get the code**
 ```bash
 # Download the project from GitHub
-git clone https://github.com/your-username/stock-comparison-tool.git
+git clone https://github.com/Waverley-Christian-College/major-project-the-betas/blob/main/tiingo.py
 ```
 
 **Step 2: Open the project**

@@ -224,16 +224,11 @@ print("=" * 60)
 print("✨ Analysis complete! Thank you for using the Stock Comparison Tool!")
 print("=" * 60)
 
-# Fetch data
-dates_1, closes_1 = fetch_stock_data(symbol_1)
-dates_2, closes_2 = fetch_stock_data(symbol_2)
-
 # Plotting
 plt.figure(figsize=(20, 5))
 plt.plot(dates_1, closes_1, marker='o', label=symbol_1)
-plt.plot(dates_2, closes_2, marker='o', label=symbol_2)
-
-plt.title(f"{symbol_1} & {symbol_2} Closing Prices")
+plt.plot(dates_2, closes_2, marker='s', label=symbol_2)
+plt.title(f"{symbol_1} & {symbol_2} Closing Prices \n")
 plt.xlabel("Date")
 plt.ylabel("Close Price (USD)")
 plt.xticks(rotation=45)
