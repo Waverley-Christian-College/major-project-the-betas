@@ -56,7 +56,6 @@ dateformat = "%Y-%m-%d"  # Define date format as YYYY-MM-DD (e.g., 2024-01-15)
 
 # ===== CALCULATE DATE RANGES BASED ON USER CHOICE =====
 # Use if-elif-else statements to handle different time period options
-
 if timechoice == "1":  # User chose 1 month
     # Handle special case: if current month is January, go back to December of previous year
     if today.month == 1:
