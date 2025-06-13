@@ -50,5 +50,5 @@ plt.grid(True)
 plt.tight_layout()
 plt.legend()  # legend
 
-plt.savefig("david_test5.png")  # Save the plot
+plt.savefig(f"{symbol_1} VS {symbol_2}.png")  # Save the plot
 plt.show()
