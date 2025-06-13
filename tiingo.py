@@ -8,18 +8,31 @@ import os
 # Your Tiingo API token
 API_TOKEN = os.getenv("API_TOKEN")
 
+if not API_TOKEN:
+    print("⚠️  Warning: API_TOKEN environment variable not found!")
+    print("   Please set your Tiingo API token as an environment variable.")
+
+print("=" * 60)
+print("📈 STOCK COMPARISON TOOL 📈")
+print("=" * 60)
+print("Compare the performance of two stocks over time!")
+print("-" * 60)
 
 # Parameter
 symbol_1 = input("What's your first company you choose? ").strip().upper() 
 symbol_2 = input("What's your second comapany you choose? ").strip().upper()
 
+print(f"\n✅ Selected stocks: {symbol_1} vs {symbol_2}")
+
 # Time Periods
+print("\n📅 TIME PERIOD SELECTION:")
 print("\nChoose your time period:")
 print("1. Last 1 month")
 print("2. Last 3 months") 
 print("3. Last 6 months")
 print("4. Last 1 year")
 print("5. Custom dates")
+print("-" * 30)
 
 timechoice = input("Enter your time period selection (1-5): ").strip()
 
@@ -71,15 +84,15 @@ elif timechoice == "5":
         enddt = datetime.strptime(end_date, "%Y-%m-%d")
         
         if startdt >= enddt:
-            print("Error: Start date must be before end date.")
+            print("❌Error: Start date must be before end date.")
             exit()
 
     except ValueError: 
-        print("Error: Invalid date format. Please use YYYY-MM-DD.")
+        print("❌Error: Invalid date format. Please use YYYY-MM-DD.")
         exit()
 
 else:
-    print("Invalid time choice. Using 1 month as a default.")
+    print("⚠️Invalid time choice. Using 1 month as a default.")
     if today.month == 1:
         start_date = today.replace(year = today.year - 1, month = 12).strftime(dateformat)
     else:
@@ -87,7 +100,8 @@ else:
 
         end_date = today.strftime(dateformat)
 
-print(f"Comparing stocks from {start_date} to {end_date}")
+print(f"📅 Comparing stocks from {start_date} to {end_date}")
+print("-" * 60)
 
 url_1 = f"https://api.tiingo.com/tiingo/daily/{symbol_1}/prices"
 url_2 = f"https://api.tiingo.com/tiingo/daily/{symbol_2}/prices"
@@ -103,17 +117,17 @@ params = {
 }
 
 # Make the request
-print(f"Fetching data for {symbol_1}...") #Status message
+print(f"🔄Fetching data for {symbol_1}...") #Status message
 response_1 = requests.get(url_1, headers=headers, params=params)
 data_1 = response_1.json()
 
-print(f"Fetching data for {symbol_2}...")
+print(f"🔄Fetching data for {symbol_2}...")
 response_2 = requests.get(url_2, headers=headers, params=params)
 data_2 = response_2.json()
 
 #Error message
 if ("detail" in str(data_1)) or ("detail" in str(data_2)): 
-    print("Error: Could not retrieve data for one or both stocks or Invalid stock Symbol")
+    print("❌Error: Could not retrieve data for one or both stocks or Invalid stock Symbol")
     exit()
 
 # Extract dates and closing prices
@@ -123,11 +137,15 @@ closes_1 = [entry["close"] for entry in data_1]
 dates_2 = [entry["date"][:10] for entry in data_2]
 closes_2 = [entry["close"] for entry in data_2]
 
+print("\n" + "=" * 60)
+print("📊 COMPARISON SUMMARY")
+print("=" * 60)
+
 start_price_1 = closes_1[0]
 end_price_1 = closes_1[-1]
 
-start_price_2 = closes_1[0]
-end_price_2 = closes_1[-1]
+start_price_2 = closes_2[0]
+end_price_2 = closes_2[-1]
 
 change_1 = ((end_price_1 - start_price_1) / start_price_1) * 100
 change_2 = ((end_price_2 - start_price_2) / start_price_2) * 100
@@ -152,6 +170,10 @@ else:
     print("📊 Both stocks ended at the same price")
 
 print("Please refer to the graph to compare the 2 stocks!")
+
+print("=" * 60)
+print("✨ Analysis complete! Thank you for using the Stock Comparison Tool!")
+print("=" * 60)
 
 # Plotting
 plt.figure(figsize=(20, 5))
